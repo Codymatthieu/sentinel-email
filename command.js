@@ -17,7 +17,7 @@ helpers.thenWithErrors(casper, function(){
   return casper.click('.auth__button--email');
 })
 
-casper.waitForText("LOGIN")
+casper.waitForSelector(".auth__form")
 
 helpers.thenWithErrors(casper, function(){
   casper.fill('.auth__form', {
