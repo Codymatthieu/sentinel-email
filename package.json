@@ -1,6 +1,6 @@
 {
   "name": "sentinel-email-password",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sentinel is always watching",
   "keywords": [
     "sentinel",
@@ -24,10 +24,8 @@
   "dependencies": {
     "casperjs": "^1.1.1"
   },
-  "devDependencies": {
-  },
-  "peerDependencies": {
-  },
+  "devDependencies": {},
+  "peerDependencies": {},
   "engines": {
     "phantomjs": ">=2.1.1",
     "node": ">=5.0.0",
