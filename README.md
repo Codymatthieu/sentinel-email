@@ -1,1 +1,2 @@
-# sentinel-email
+# sentinel-email-password
+sentinel-email-password
