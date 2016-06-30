@@ -1,11 +1,10 @@
 var assertOnOctobluDashboard = function(casper){
-  casper.waitForText("dashboard", function(){
-    this.echo("success");
-    this.exit()
+  return casper.waitForText("dashboard", function(){
+    return;
   }, function(){
-    console.log("failure")
-    console.log(this.echo(casper.captureBase64('png')))
-    this.exit(1)
+    console.log("failure to load dashboard")
+    console.log(casper.echo(casper.captureBase64('png')))
+    casper.exit(1)
   });
 };
 
@@ -14,7 +13,7 @@ var buildCasper = function(Casper){
     waitTimeout: (10 * 1000),
     onError: (function(error){
       console.log("failure due to error: " + error)
-      console.log(this.echo(casper.captureBase64('png')))
+      console.log(casper.echo(casper.captureBase64('png')))
       casper.exit(1)
     })
   });
@@ -23,16 +22,31 @@ var buildCasper = function(Casper){
   casper.start('https://app.octoblu.com/');
 
   casper.waitForSelector(".auth.login");
+  casper.on('error', function(error){
+    console.log("failure due to casper error: " + error)
+    console.log(casper.echo(casper.captureBase64('png')))
+    casper.exit(1)
+  });
   return casper;
 };
+
+var logout = function(casper){
+  casper.waitForSelector('.TopBar-settings');
+  casper.click(".TopBar-settings");
+
+  casper.waitForSelector('a[aria-label="Sign Out"]');
+  casper.click('a[aria-label="Sign Out"]');
+
+  casper.waitForSelector(".auth.login");
+}
 
 var reportErrors = function(f) {
   try {
     return f();
   } catch (e) {
-    casper.echo("failure")
+    casper.echo("failure in thenWithErrors: " + e)
     casper.echo(casper.captureBase64('png'))
-    this.exit(1)
+    casper.exit(1)
   }
 };
 
@@ -45,6 +59,7 @@ var thenWithErrors = function(casper, f){
 module.exports = {
   assertOnOctobluDashboard: assertOnOctobluDashboard,
   buildCasper: buildCasper,
+  logout: logout,
   reportErrors: reportErrors,
   thenWithErrors: thenWithErrors
 };

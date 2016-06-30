@@ -28,5 +28,12 @@ helpers.thenWithErrors(casper, function(){
 })
 
 helpers.assertOnOctobluDashboard(casper);
+helpers.thenWithErrors(casper, function(){
+  helpers.logout(casper);
+});
+helpers.thenWithErrors(casper, function(){
+  casper.echo("success");
+  casper.exit(0);
+})
 
 casper.run();
