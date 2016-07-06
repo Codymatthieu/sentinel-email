@@ -9,8 +9,8 @@ var EMAIL_PASSWORD_USERNAME = system.env.EMAIL_PASSWORD_USERNAME;
 var EMAIL_PASSWORD_PASSWORD = system.env.EMAIL_PASSWORD_PASSWORD;
 
 if(!EMAIL_PASSWORD_USERNAME || !EMAIL_PASSWORD_PASSWORD)  {
-  console.log('Missing required env: EMAIL_PASSWORD_USERNAME or EMAIL_PASSWORD_PASSWORD')
-  this.exit(1)
+  console.log('Missing required env: EMAIL_PASSWORD_USERNAME or EMAIL_PASSWORD_PASSWORD');
+  casper.exit(1);
 }
 
 helpers.thenWithErrors(casper, function(){
