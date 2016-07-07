@@ -3,7 +3,7 @@
 var system  = require('system');
 var helpers = require('./helpers');
 var Casper  = require('casper');
-var casper  = helpers.buildCasper(Casper);
+var casper  = helpers.buildCasper(Casper, 'sentinel-email-password');
 
 var EMAIL_PASSWORD_USERNAME = system.env.EMAIL_PASSWORD_USERNAME;
 var EMAIL_PASSWORD_PASSWORD = system.env.EMAIL_PASSWORD_PASSWORD;
